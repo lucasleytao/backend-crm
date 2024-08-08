@@ -1,0 +1,30 @@
+.form-container {
+    height: 100vh;/*ocupa 100% da viewport height*/
+}
+
+.form-signin { /*customiza o form*/
+    width: 330px; /*larg max para um celular*/
+    padding: 15px; /*preenchimento*/
+    margin: auto; /*autocentraliza no meio da tela*/
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.login-links a {
+    text-decoration: none;
+    font-size: 10pt;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}

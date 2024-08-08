@@ -1,0 +1,86 @@
+/* h1,h2,h3,h4,h5{
+    line-height: 1.5;
+} */
+
+p {
+    color: #8b8b8b;
+}
+
+/* NAVBAR */
+
+.navbar {
+    background-color: #0d6efd;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+/* BANNER */
+
+#banner{
+    background-color: #0d6efd;
+    color: #ffffff;
+    padding: 100px 0 70px 0;
+}
+
+/* #banner img{
+    width: 100%;
+} */
+
+.btn-banner{
+    margin: 8% 3% 5% 0;
+}
+
+/* FEATURES */
+
+#features{
+    padding: 7% 5%;
+}
+
+.features-box{
+    text-align: center;
+    padding: 5%; /*espacamento entre os cards*/
+}
+
+/* ICONS */
+
+.icon{
+    color: #0d6efd;
+    margin-bottom: 15px;
+}
+
+/* COMMENTS */
+
+#comments {
+    background-color: #e3e3e3;
+    color: #323338;
+    padding: 7% 15%;
+    text-align: center;
+}
+
+#comments img {
+    border-radius: 50%;
+    width: 10%;
+    margin: 20px;
+}
+
+/* PRICING */
+
+#pricing .titulo{
+    margin-top: 5%;
+}
+
+#pricing {
+    padding: 5% 15% 8%;
+    color: #323338;
+}
+
+/* FOOTER */
+
+#footer {
+    padding: 1% 15%;
+    text-align: center;
+    background-color: #f3f3f3;
+    line-height: 2;
+}
