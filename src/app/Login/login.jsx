@@ -78,7 +78,7 @@ function Login() {
                     <Link to="/app/signin">Criar uma conta</Link>
                 </div>
 
-                <p className="mt-5 mb-3 text-body-secondary">&copy; Desenvolvido por Hand Tecnologia</p>
+                <p className="mt-5 mb-3 text-body-secondary">&copy; Desenvolvido por Lucas Leitão</p>
             </form>
         </div>
     );

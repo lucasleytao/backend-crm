@@ -29,7 +29,7 @@ function NovoCliente() {
     else {
       try {
 
-        // Formata o número de telefone antes de salvar
+        // formata o numero de telefone antes de salvar
       const formattedPhone = `(${fone.slice(0, 2)})${fone.slice(2, 7)}-${fone.slice(7)}`;
 
         await addDoc(collection(db, "clientes"), {

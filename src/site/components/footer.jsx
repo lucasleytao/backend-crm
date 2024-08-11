@@ -15,7 +15,7 @@ function Footer(){
             </ul>
         </div>
         <a href="mailto:handtecnologia@gmail.com">handtecnologia@gmail.com</a>
-        <p>&copy; Desenvolvido por Hand Tecnologia - {ano}</p>
+        <p>&copy; Desenvolvido por Lucas Leitão - {ano}</p>
     </section>
 }
 
