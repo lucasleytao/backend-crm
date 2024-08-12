@@ -20,6 +20,8 @@ function NovoCliente() {
   const CadastrarCliente = async () => {
     if (nome.length === 0) {
       setMensagem("Informe o nome");
+    } else if (endereco.length === 0) {
+      setMensagem("Informe o endereço");
     } else if (fone.length === 0) {
       setMensagem("Informe o telefone");
     } 

@@ -4,10 +4,6 @@ import './listaclientes.css';
 
 function ListaClientes(props) { 
 
-  function deleteUser(id){
-    alert(`Excluir usuário: ${id}`)
-  }
-
   return (
       <table className="table table-hover">
       <thead className="table-dark">
@@ -32,9 +28,9 @@ function ListaClientes(props) {
               <td>{cliente.fone}</td>
               <td>{cliente.email}</td>
               <td>
-                <Link to='#'><i className="fa-solid fa-hand-holding-dollar icone-acao"></i></Link>
+                <Link to={`/app/situacaocliente/${cliente.id}`}><i className="fa-solid fa-hand-holding-dollar icone-acao"></i></Link>
                 <Link to={`/app/editarcliente/${cliente.id}`}><i className="fa-solid fa-pen-to-square icone-acao"></i></Link>
-                <Link to='#' onClick={() => deleteUser(cliente.id)}><i className="fa-solid fa-trash-can icone-acao red"></i></Link>
+                <Link to='#' onClick={() => props.clickDelete(cliente.id)}><i className="fa-solid fa-trash-can icone-acao red"></i></Link>
               </td>
              
             </tr>

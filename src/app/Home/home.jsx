@@ -4,13 +4,25 @@ import Navbar from "../Components/Navbar/navbar";
 import ListaClientes from "../Components/ListaClientes/listaclientes";
 import "./home.css";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 // importa do BD firebase
 import { db } from "../BD/firebase";
 
 function Home() {
     const [clientes, setClientes] = useState([]);
     const [busca, setBusca] = useState('');
+    const [del, setDel] = useState('');
+
+    async function deleteUser(id) {
+        try {
+            await deleteDoc(doc(db, 'clientes', id));
+            setDel(id);
+        } catch (error) {
+            console.error("Erro ao deletar cliente:", error);
+        }
+    }
+
+    // acessa o banco de dados
 
     useEffect(() => {
         const getClientes = async () => {
@@ -20,7 +32,7 @@ function Home() {
                 //obtem os documentos da colecao
                 const clientesSnapshot = await getDocs(clientesCollection);
 
-                // Filtra os clientes com base na busca
+                // Filtra os clientes com base na busca e monta o array de dados
                 const clientesList = clientesSnapshot.docs
                     .filter(doc => doc.data().nome.toLowerCase().includes(busca.toLowerCase()))
                     .map(doc => ({
@@ -35,7 +47,7 @@ function Home() {
             }
         };
         getClientes();
-    }, [busca]);
+    }, [busca, del]);
 
     return <>
         <Navbar />
@@ -53,7 +65,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <ListaClientes arrayClientes={clientes} />
+            <ListaClientes arrayClientes={clientes} clickDelete={deleteUser} />
         </div >
     </>
 }
