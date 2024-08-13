@@ -24,4 +24,4 @@
 6. **Retorno do Componente**:
    - A interface exibe os valores armazenados nos estados
 
-Esses comentários ajudam a entender o fluxo de trabalho no código e como as operações do Firebase Firestore foram integradas ao React.
+Esses comentários ajudam a entender o fluxo de trabalho no código e como as operações do Firebase Firestore são integradas ao React.

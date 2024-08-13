@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar/navbar";
 import ListaClientes from "../Components/ListaClientes/listaclientes";
+import SweetAlert from "react-bootstrap-sweetalert";
 import "./home.css";
 
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
@@ -12,14 +13,22 @@ function Home() {
     const [clientes, setClientes] = useState([]);
     const [busca, setBusca] = useState('');
     const [del, setDel] = useState('');
+    const [confirmar, setConfirmar] = useState(false)
+    const [confirmarId, setConfirmarId] = useState('')
 
     async function deleteUser(id) {
         try {
             await deleteDoc(doc(db, 'clientes', id));
             setDel(id);
+            setConfirmar(false)
         } catch (error) {
             console.error("Erro ao deletar cliente:", error);
         }
+    }
+
+    function confirmDeleteUser(id) {
+        setConfirmarId(id) // atualiza o id que sera excluido do banco
+        setConfirmar(true)
     }
 
     // acessa o banco de dados
@@ -65,7 +74,27 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <ListaClientes arrayClientes={clientes} clickDelete={deleteUser} />
+            <ListaClientes arrayClientes={clientes} clickDelete={confirmDeleteUser} />
+
+{
+    confirmar ? <SweetAlert // se confirmar (true) entao execute ...
+    warning
+    showCancel
+    // showCloseButton
+    confirmBtnText="Sim, excluir!"
+    confirmBtnBsStyle="danger"
+    cancelBtnText="Cancelar"
+    cancelBtnBsStyle="light"
+    title="Confirme sua ação"
+    onConfirm={() => deleteUser(confirmarId)}
+    onCancel={() => setConfirmar(false)}
+    // focusCancelBtn
+    >
+    Deseja realmente excluir este cliente?
+</SweetAlert> : null // senao
+}
+
+            
         </div >
     </>
 }
