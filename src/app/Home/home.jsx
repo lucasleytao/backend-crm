@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar/navbar";
 import ListaClientes from "../Components/ListaClientes/listaclientes";
 import SweetAlert from "react-bootstrap-sweetalert";
+import clientesPdf from "../Reports/Clientes/clientes";
 import "./home.css";
 
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
@@ -46,7 +47,7 @@ function Home() {
                     .filter(doc => doc.data().nome.toLowerCase().includes(busca.toLowerCase()))
                     .map(doc => ({
                         id: doc.id,
-                        ...doc.data()
+                        ...doc.data() // ...doc operador spread: todos os dados
                     }));
 
                 setClientes(clientesList);
@@ -66,6 +67,7 @@ function Home() {
             <div className="row">
                 <div className="col-4">
                     <Link to='/app/novocliente' className="btn btn-primary" type="button"><i className="fa-solid fa-user-plus"></i> Novo cliente</Link>
+                    <button onClick={(e) => clientesPdf(clientes)} className="btn btn-danger btn-pdf" type="button" id="button-addon2"><i class="fa-solid fa-file-pdf"></i> Gerar PDF</button>
                 </div>
                 <div className="col-7">
                     <div className="input-group mb-3">

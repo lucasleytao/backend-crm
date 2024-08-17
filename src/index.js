@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { AuthProvider } from './app/Context/auth';
 
 //conceito de jsx: mescla html e javascript
 
@@ -17,7 +18,7 @@ import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root')); //busca elemento id 'root'
 root.render( //renderiza na tela
 //o que sera renderizado deve estar envolvido em uma unica tag
-  <>
+  <AuthProvider>
     <App />
-  </>
+  </AuthProvider>
 );

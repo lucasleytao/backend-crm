@@ -1,7 +1,8 @@
 // src/components/Login.js
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate} from "react-router-dom";
+import { AuthContext } from "../Context/auth";
 import "./login.css";
 
 import { auth } from "../BD/firebase"; // importa a autenticacao configurada
@@ -13,11 +14,14 @@ function Login() {
     const [senha, setSenha] = useState("");
     const [sucesso, setSucesso] = useState("");
     const navigate = useNavigate(); // import hook useNavigate
+    const {setLogado} = useContext(AuthContext);
 
     function LoginUsuario() {
         signInWithEmailAndPassword(auth, email, senha) //promises
             .then((firebaseUser) => {
                 // Sucesso
+                localStorage.setItem('logado', 'S')
+                setLogado(true);
                 setSucesso('S'); //esconde a mensagem de alerta
                 navigate('/app/home')
             })
@@ -26,6 +30,8 @@ function Login() {
 
             .catch((error) => {
                 // Erro
+                localStorage.setItem('logado', 'N')
+                setLogado(false);
                 setSucesso("N"); //funcao igual a N
             });
     }

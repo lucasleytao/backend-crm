@@ -1,5 +1,6 @@
-import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom' //bres
+import React, { useContext } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthContext } from './app/Context/auth';
 //paginas
 import Site from './site/site';
 import Login from './app/Login/login';
@@ -11,20 +12,81 @@ import EditarCliente from './app/EditarCliente/editarcliente';
 import SituacaoCliente from './app/SituacaoCliente/situacaocliente';
 
 function App() {
-    return <div>
+    const { logado } = useContext(AuthContext);
+    // console.log(logado);
+
+    function SecureRoute({ children }) {
+        if (!logado) {
+            return <Navigate to='/app' />;
+        }
+        return children;
+    }
+
+    return (
         <BrowserRouter>
             <Routes>
-                <Route exact path='/' element={<Site/>} />
-                <Route exact path='/app' element={<Login/>} />
-                <Route exact path='/app/signin' element={<SignIn/>} />
-                <Route exact path='/app/resetsenha' element={<ResetSenha/>} />
-                <Route exact path='/app/home' element={<Home/>} />
-                <Route exact path='/app/novocliente' element={<NovoCliente/>} />
-                <Route exact path='/app/editarcliente/:id' element={<EditarCliente/>} />
-                <Route exact path='/app/situacaocliente/:id' element={<SituacaoCliente/>} />
+                <Route path='/' element={<Site />} />
+                <Route path='/app' element={<Login />} />
+                <Route path='/app/signin' element={<SignIn />} />
+                <Route path='/app/resetsenha' element={<ResetSenha />} />
+
+                <Route path='/app/home' element={<SecureRoute><Home /></SecureRoute>} />
+                <Route path='/app/novocliente' element={<SecureRoute><NovoCliente /></SecureRoute>} />
+                <Route path='/app/editarcliente/:id' element={<SecureRoute><EditarCliente /></SecureRoute>} />
+                <Route path='/app/situacaocliente/:id' element={<SecureRoute><SituacaoCliente /></SecureRoute>} />
             </Routes>
         </BrowserRouter>
-    </div>
+    );
 }
 
 export default App;
+
+// ## abordagem mais modular e mais facil de manter
+
+// import React, { useState, createContext, useContext } from "react";
+
+// // Contexto de autenticação
+// const AuthContext = createContext({});
+
+// // Hook personalizado para usar o contexto de autenticação
+// export function useAuth() {
+//     return useContext(AuthContext);
+// }
+
+// // Provedor de dados para quem acessar esse contexto
+// export function AuthProvider({ children }) {
+//     const [logado, setLogado] = useState(() => {
+//         const isLogado = localStorage.getItem('logado');
+//         return isLogado === 'S';
+//     });
+
+//     const login = () => {
+//         setLogado(true);
+//         localStorage.setItem('logado', 'S');
+//     };
+
+//     const logout = () => {
+//         setLogado(false);
+//         localStorage.removeItem('logado');
+//     };
+
+//     const value = {
+//         logado,
+//         login,
+//         logout
+//     };
+
+//     return (
+//         <AuthContext.Provider value={value}>
+//             {children}
+//         </AuthContext.Provider>
+//     );
+// }
+
+// import { useAuth } from './caminho/para/AuthContext';
+
+// function MeuComponente() {
+//     const { logado, login, logout } = useAuth();
+
+//     // Use logado, login e logout conforme necessário
+// }

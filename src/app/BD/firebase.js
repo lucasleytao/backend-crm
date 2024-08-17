@@ -18,12 +18,15 @@ let app;
 let auth;
 let db;
 
+// tratamento de erro
+
 try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app); // recebe as configuracoes do firebase
 
     console.log("Firebase inicializado com sucesso");
+    
 } catch (error) {
     console.error("Erro ao inicializar o Firebase:", error);
 }

@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import {Link} from "react-router-dom"
+import { AuthContext } from "../../Context/auth";
 
 function Navbar() { //elemento Site com parametro props
+    const {setLogado} = useContext(AuthContext)
+
+    function Logout(){
+        setLogado(false);
+        localStorage.removeItem('logado');
+    }
 
     return <nav className="navbar fixed-top navbar-expand-lg">
         <div className="container-fluid">
@@ -22,7 +29,7 @@ function Navbar() { //elemento Site com parametro props
                         <Link to="/app/novocliente" className="nav-link" aria-current="page" href="#">Novo cliente</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/" className="nav-link" aria-current="page" href="#">Sair</Link>
+                        <button onClick={Logout} className="nav-link" aria-current="page" href="#">Sair</button>
                     </li>                    
                 </ul>
             </div>
