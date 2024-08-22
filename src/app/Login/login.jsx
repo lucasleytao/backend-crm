@@ -62,7 +62,8 @@ function Login() {
                
             {
                 // operador ternario
-                // condicional === 1 ? 'faca isso' : 'faca aquilo'
+                
+                // condicional === 1 ?(se condicao verdadeira) 'faca isso' :(senao) 'faca aquilo'
 
                 sucesso === 'N' ?
                 <div className="alert alert-danger" role="alert">
