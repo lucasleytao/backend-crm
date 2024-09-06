@@ -2,7 +2,7 @@
 
 import React, { useState, useContext } from "react";
 import { Link, useNavigate} from "react-router-dom";
-import { AuthContext } from "../Context/auth";
+import { AuthContext } from "../Context/auth"; //importa contexto de autenticacao
 import "./login.css";
 
 import { auth } from "../BD/firebase"; // importa a autenticacao configurada
@@ -14,13 +14,14 @@ function Login() {
     const [senha, setSenha] = useState("");
     const [sucesso, setSucesso] = useState("");
     const navigate = useNavigate(); // import hook useNavigate
-    const {setLogado} = useContext(AuthContext);
+    const {setLogado} = useContext(AuthContext); // chama a funcao e usa o contexto
 
     function LoginUsuario() {
         signInWithEmailAndPassword(auth, email, senha) //promises
+        // se
             .then((firebaseUser) => {
                 // Sucesso
-                localStorage.setItem('logado', 'S')
+                localStorage.setItem('logado', 'S') // persiste informacoes de login | item logado setado para sim
                 setLogado(true);
                 setSucesso('S'); //esconde a mensagem de alerta
                 navigate('/app/home')

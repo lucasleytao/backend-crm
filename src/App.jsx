@@ -13,7 +13,6 @@ import SituacaoCliente from './app/SituacaoCliente/situacaocliente';
 
 function App() {
     const { logado } = useContext(AuthContext);
-    // console.log(logado);
 
     function SecureRoute({ children }) {
         if (!logado) {

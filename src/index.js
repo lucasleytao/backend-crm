@@ -18,6 +18,7 @@ import { AuthProvider } from './app/Context/auth';
 const root = ReactDOM.createRoot(document.getElementById('root')); //busca elemento id 'root'
 root.render( //renderiza na tela
 //o que sera renderizado deve estar envolvido em uma unica tag
+// envolve todo a aplicacao com o provedor
   <AuthProvider>
     <App />
   </AuthProvider>
