@@ -13,7 +13,7 @@ function Navbar() { //elemento Site com parametro props
 
     return <nav className="navbar fixed-top navbar-expand-lg">
         <div className="container-fluid">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/app/home">
                 <img src="/img/logo.jpg" alt="" height="40" style={{ borderRadius: 14 }} />
             </a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -29,7 +29,7 @@ function Navbar() { //elemento Site com parametro props
                         <Link to="/app/novocliente" className="nav-link" aria-current="page" href="#">Novo cliente</Link>
                     </li>
                     <li className="nav-item">
-                        <button onClick={Logout} className="nav-link" aria-current="page" href="#">Sair</button>
+                        <Link to="/" onClick={Logout} className="nav-link" aria-current="page" href="#">Sair</Link>
                     </li>                    
                 </ul>
             </div>

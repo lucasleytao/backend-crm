@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Components/Navbar/navbar";
 import './situacaocliente.css';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../BD/firebase";
@@ -58,6 +58,18 @@ function SituacaoCliente(props) {
                                 disabled
                             />
                         </div>
+                        <div className="">
+              <Link to="/app/home" type="button" className="btn btn-outline-danger btn-acao">
+                Voltar
+              </Link>
+              <Link to="/app/produto" type="button" className="btn btn-success btn-acao">
+                Registrar Compra
+              </Link>
+              <Link to="" type="button" className="btn btn-secondary btn-acao">
+                Imprimir
+              </Link>
+              
+            </div>
                     </form>
                 </div>
             </div>

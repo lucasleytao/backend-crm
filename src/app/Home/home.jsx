@@ -67,7 +67,7 @@ function Home() {
             <div className="row">
                 <div className="col-4">
                     <Link to='/app/novocliente' className="btn btn-primary" type="button"><i className="fa-solid fa-user-plus"></i> Novo cliente</Link>
-                    <button onClick={(e) => clientesPdf(clientes)} className="btn btn-danger btn-pdf" type="button" id="button-addon2"><i className="fa-solid fa-file-pdf"></i> Gerar PDF</button>
+                    <button onClick={(e) => clientesPdf(clientes)} className="btn btn-outline-danger btn-pdf" type="button" id="button-addon2"><i className="fa-solid fa-file-pdf"></i> Gerar PDF</button>
                 </div>
                 <div className="col-7">
                     <div className="input-group mb-3">

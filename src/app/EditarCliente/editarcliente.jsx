@@ -113,7 +113,7 @@ function EditarCliente(props) {
                             />
                         </div>
                         <div className="">
-                            <Link to="/app/home" type="button" className="btn btn-outline-primary btn-acao">
+                            <Link to="/app/home" type="button" className="btn btn-outline-danger btn-acao">
                                 Cancelar
                             </Link>
                             <button

@@ -3,6 +3,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCvmdlYAWDxFmXkYuNSUvUpPVmclvJG8VU",
@@ -17,6 +18,7 @@ const firebaseConfig = {
 let app;
 let auth;
 let db;
+let analytics;
 
 // tratamento de erro
 
@@ -24,6 +26,7 @@ try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app); // recebe as configuracoes do firebase
+    analytics = getAnalytics(app);
 
     console.log("Firebase inicializado com sucesso");
     
@@ -31,6 +34,6 @@ try {
     console.error("Erro ao inicializar o Firebase:", error);
 }
 
-export { auth, db };
+export { auth, db, analytics };
 
 
