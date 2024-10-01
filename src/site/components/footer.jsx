@@ -14,7 +14,7 @@ function Footer(){
                 <li className="list-inline-item"><a href="#" target="blank"><i className="fa fa-envelope fa-2x"></i></a></li>
             </ul>
         </div>
-        <a href="mailto:handtecnologia@gmail.com">handtecnologia@gmail.com</a>
+        <a href="mailto:lucassleitao1401@gmail.com">lucassleitao1401@gmail.com</a>
         <p>&copy; Desenvolvido por Lucas Leitão - {ano}</p>
     </section>
 }

@@ -5,3 +5,12 @@
 .btn-pdf {
     margin-left: 15px;
 }
+
+.btn-color {
+    background-color: rgb(170, 17, 204);
+    color: white;
+}
+.btn-color:hover {
+    background-color: rgb(113, 17, 204);
+    color: white;
+}
