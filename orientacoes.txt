@@ -1,0 +1,22 @@
+Algumas orientações: 
+
+Acesse a landing page criada para o projeto e acesse a aplicação
+link: 
+hand-crm.vercel.app (produção)
+
+Crie uma conta
+Faça login
+*Caso esqueça sua senha, você pode clicar em recuperar senha
+
+Ao acessar o sistema, clique no botão Adicionar Cliente ou clique no link disponível para a ação.
+
+Se desejar, você pode editar as informações do cliente ou excluir definitivamente o cliente da lista de clientes (Banco de dados)
+
+*Utilizei o banco de dados remoto no-cicle (NoSQL) do Firebase, pois, se apresentou bem completo, suprindo todas as minhas necessidades para o projeto, principalmente, no que diz respeito a autenticação de usuários e recuperação de senha, pois todo o processo já é integrado ao ecossistema do Google, o que tornou o desenvolvimento mais simples e fluido.
+
+O objetivo foi alcançado, considerando que a prioridade era o desenvolvimento de uma sistema CRUD, com prioridade para boas práticas de desenvolvimento backend e frontend, a segurança das páginas, impossibilitando modificações na URL sem que o usuário esteja logado e aplicação de tudo o que foi aprendido ao longo do curso.
+
+TODO O CÓDIGO ESTÁ NO MEU GITHUB
+
+https://github.com/lucasleytao/backend-crm
+

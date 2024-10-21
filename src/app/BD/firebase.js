@@ -20,17 +20,19 @@ let auth;
 let db;
 let analytics;
 
-// tratamento de erro
-
+// bloco try/tentar
 try {
+    // codigo executado
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app); // recebe as configuracoes do firebase
     analytics = getAnalytics(app);
 
     console.log("Firebase inicializado com sucesso");
-    
+
+// bloco catch/capturar excecao
 } catch (error) {
+    // tratamento do erro
     console.error("Erro ao inicializar o Firebase:", error);
 }
 

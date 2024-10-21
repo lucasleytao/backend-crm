@@ -1,5 +1,3 @@
-Aqui está o arquivo markdown com as informações organizadas:
-
 # Conceitos Fundamentais em Desenvolvimento JS e React
 
 ## 1. **Lógica de Programação**
