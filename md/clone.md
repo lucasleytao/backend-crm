@@ -23,7 +23,7 @@ ls -al ~/.ssh
 ```bash
 ssh-keygen -t ed25519 -C "email"
 ```
-- Pressione **Enter** para aceitar o local padrão de armazenamento.
+- Pressione ``Enter`` para aceitar o local padrão de armazenamento.
 - Se solicitado, defina uma senha ou deixe em branco para não proteger a chave com senha.
 
 ### Adicionar chave ao agente SSH
@@ -36,17 +36,17 @@ ssh-add ~/.ssh/id_ed25519
 ```bash
 cat ~/.ssh/id_ed25519.pub
 ```
-- **Copie a chave pública gerada.**
+- ``Copie a chave pública gerada.``
 
 ### Configurar chave SSH no GitHub
 1. Acesse o GitHub e clique no ícone do seu perfil no canto superior direito.
-2. Vá em **Settings**.
-3. No menu lateral, clique em **SSH and GPG keys**.
-4. Clique em **New SSH key**.
+2. Vá em ``Settings``.
+3. No menu lateral, clique em ``SSH and GPG keys``.
+4. Clique em ``New SSH key``.
 5. Preencha os campos:
-   - **Title:** Nome para identificar esta chave (ex.: "Meu novo notebook").
-   - **Key:** Cole a chave pública copiada anteriormente.
-6. Clique em **Add SSH key**.
+   - ``Title:`` Nome para identificar esta chave (ex.: "Meu novo notebook").
+   - ``Key:`` Cole a chave pública copiada anteriormente.
+6. Clique em ``Add SSH key``.
    - Pode ser solicitado que você insira sua senha do GitHub para confirmar.
 
 ---
@@ -55,7 +55,7 @@ cat ~/.ssh/id_ed25519.pub
 ```bash
 ssh -T git@github.com
 ```
-- **Mensagem esperada de sucesso:**
+- ``Mensagem esperada de sucesso:``
   ```
   Hi username! You've successfully authenticated, but GitHub does not provide shell access.
   ```
@@ -72,9 +72,9 @@ ssh -T git@github.com
        Port 443
    ```
 3. Salve e feche:
-   - **CTRL + O:** Salvar
-   - **ENTER:** Confirmar
-   - **CTRL + X:** Sair
+   - ``CTRL + O:`` Salvar
+   - ``ENTER:`` Confirmar
+   - ``CTRL + X:`` Sair
 
 4. Teste novamente a conexão:
    ```bash
@@ -88,9 +88,9 @@ The authenticity of host '[ssh.github.com]:443 ([20.201.28.152]:443)' can't be e
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
-- Digite `yes` e pressione **Enter**.
+- Digite `yes` e pressione ``Enter``.
 
-- **Mensagem de sucesso:**
+- ``Mensagem de sucesso:``
   ```
   Hi username! You've successfully authenticated, but GitHub does not provide shell access.
   ```

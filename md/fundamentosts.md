@@ -31,9 +31,9 @@ console.log('A área do retângulo corresponde a: ' + base * altura);
 ```typescript
 let idade: number = 17;
 if (idade >= 18) {
-    console.log('Maior de idade **Liberado');
+    console.log('Maior de idade ``Liberado');
 } else {
-    console.log('Menor de idade **Bloqueado');
+    console.log('Menor de idade ``Bloqueado');
 }
 ```
 
@@ -99,7 +99,7 @@ console.log(a + b); // Adição
 console.log(a - b); // Subtração
 console.log(a * b); // Multiplicação
 console.log(a / b); // Divisão
-console.log(a ** b); // Exponenciação
+console.log(a `` b); // Exponenciação
 console.log(a % b); // Resto da Divisão
 ```
 

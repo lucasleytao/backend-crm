@@ -1,6 +1,6 @@
 ## Estudo Avançado sobre Fundamentos de Python
 
-Este documento sintetiza conceitos básicos em **Python**, destacando sua sintaxe simples e poderosa.
+Este documento sintetiza conceitos básicos em ``Python``, destacando sua sintaxe simples e poderosa.
 
 ---
 
@@ -43,9 +43,9 @@ print(f'A área do retângulo corresponde a: {base * altura}')
 ```python
 idade = 17
 if idade >= 18:
-    print('Maior de idade **Liberado')
+    print('Maior de idade ``Liberado')
 else:
-    print('Menor de idade **Bloqueado')
+    print('Menor de idade ``Bloqueado')
 ```
 
 ---
@@ -97,7 +97,7 @@ print(a + b)  # Soma
 print(a - b)  # Subtração
 print(a * b)  # Multiplicação
 print(a / b)  # Divisão
-print(a ** b)  # Exponenciação
+print(a `` b)  # Exponenciação
 print(a % b)  # Resto da divisão
 ```
 

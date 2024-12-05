@@ -39,9 +39,9 @@ console.log('A área do retângulo corresponde a: ' + (base * altura));
 ```javascript
 let idade = 17;
 if (idade >= 18) {
-    console.log('Maior de idade **Liberado');
+    console.log('Maior de idade ``Liberado');
 } else {
-    console.log('Menor de idade **Bloqueado');
+    console.log('Menor de idade ``Bloqueado');
 }
 ```
 
@@ -96,21 +96,21 @@ document.write('Saída de dados por meio de documento HTML utilizando JavaScript
 ## 3. Tipos de Dados
 
 ### Tipos Primitivos
-- **Number**: Números inteiros e de ponto flutuante.
-- **String**: Cadeia de caracteres.
-- **Boolean**: Valores `true` ou `false`.
-- **Undefined**: Variável declarada, mas sem valor definido.
-- **Null**: Ausência intencional de valor.
-- **Symbol (ES6)**: Identificador único.
+- ``Number``: Números inteiros e de ponto flutuante.
+- ``String``: Cadeia de caracteres.
+- ``Boolean``: Valores `true` ou `false`.
+- ``Undefined``: Variável declarada, mas sem valor definido.
+- ``Null``: Ausência intencional de valor.
+- ``Symbol (ES6)``: Identificador único.
 
 ---
 
 ### Tipos de Referência
-- **Objeto (Object)**: Coleção de pares chave-valor.
-- **Array**: Lista ordenada de valores.
-- **Função (Function)**: Blocos de código reutilizáveis.
-- **Data (Date)**: Representação de datas e horários.
-- **RegExp**: Expressões regulares para padrões de texto.
+- ``Objeto (Object)``: Coleção de pares chave-valor.
+- ``Array``: Lista ordenada de valores.
+- ``Função (Function)``: Blocos de código reutilizáveis.
+- ``Data (Date)``: Representação de datas e horários.
+- ``RegExp``: Expressões regulares para padrões de texto.
 
 ---
 
@@ -137,7 +137,7 @@ console.log(a + b); // Soma
 console.log(a - b); // Subtração
 console.log(a * b); // Multiplicação
 console.log(a / b); // Divisão
-console.log(a ** b); // Exponenciação
+console.log(a `` b); // Exponenciação
 console.log(a % b); // Resto da divisão
 ```
 

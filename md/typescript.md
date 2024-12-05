@@ -1,6 +1,6 @@
 ## Estudo Avançado sobre Fundamentos de TypeScript
 
-Este documento organiza e aprimora o conteúdo fundamental de JavaScript, adaptando-o para **TypeScript**. O TypeScript adiciona tipagem estática, interfaces e outros recursos para facilitar o desenvolvimento escalável e seguro.
+Este documento organiza e aprimora o conteúdo fundamental de JavaScript, adaptando-o para ``TypeScript``. O TypeScript adiciona tipagem estática, interfaces e outros recursos para facilitar o desenvolvimento escalável e seguro.
 
 ---
 
@@ -38,9 +38,9 @@ console.log(`A área do retângulo corresponde a: ${base * altura}`);
 ```typescript
 let idade: number = 17;
 if (idade >= 18) {
-    console.log('Maior de idade **Liberado');
+    console.log('Maior de idade ``Liberado');
 } else {
-    console.log('Menor de idade **Bloqueado');
+    console.log('Menor de idade ``Bloqueado');
 }
 ```
 
@@ -101,7 +101,7 @@ console.log(a + b); // Soma
 console.log(a - b); // Subtração
 console.log(a * b); // Multiplicação
 console.log(a / b); // Divisão
-console.log(a ** b); // Exponenciação
+console.log(a `` b); // Exponenciação
 console.log(a % b); // Resto da divisão
 ```
 

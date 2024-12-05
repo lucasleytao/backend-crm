@@ -31,9 +31,9 @@ console.log('A área do retângulo corresponde a: ' + base * altura);
 ```javascript
 let idade = 17;
 if (idade >= 18) {
-    console.log('Maior de idade **Liberado');
+    console.log('Maior de idade ``Liberado');
 } else {
-    console.log('Menor de idade **Bloqueado');
+    console.log('Menor de idade ``Bloqueado');
 }
 ```
 
@@ -100,23 +100,23 @@ document.write('Saída de dados por meio de documento HTML utilizando JavaScript
 ## Tipos de Dados
 
 ### Tipos Primitivos
-- **Number**: Inteiros e ponto flutuante.
-- **String**: Cadeia de caracteres.
-- **Boolean**: `true` ou `false`.
-- **Undefined**: Variável declarada, mas sem valor definido.
-- **Null**: Ausência de valor ou valor nulo.
-- **Symbol (ES6)**: Propriedade única de objetos.
+- ``Number``: Inteiros e ponto flutuante.
+- ``String``: Cadeia de caracteres.
+- ``Boolean``: `true` ou `false`.
+- ``Undefined``: Variável declarada, mas sem valor definido.
+- ``Null``: Ausência de valor ou valor nulo.
+- ``Symbol (ES6)``: Propriedade única de objetos.
 
 ### Tipos de Referência
-- **Objeto (Object)**: Coleção de pares chave-valor.
-- **Array**: Lista de valores ordenados.
-- **Função (Function)**: Bloco de código reutilizável.
-- **Data (Date)**: Representação de datas e horários.
-- **RegExp**: Padrões de texto.
+- ``Objeto (Object)``: Coleção de pares chave-valor.
+- ``Array``: Lista de valores ordenados.
+- ``Função (Function)``: Bloco de código reutilizável.
+- ``Data (Date)``: Representação de datas e horários.
+- ``RegExp``: Padrões de texto.
 
 ### Tipos Especiais
-- **NaN**: Valor numérico inválido.
-- **Infinity**: Valores infinitos (positivos ou negativos).
+- ``NaN``: Valor numérico inválido.
+- ``Infinity``: Valores infinitos (positivos ou negativos).
 
 ### Tipagem Dinâmica
 JavaScript determina o tipo de variável em tempo de execução.
@@ -152,7 +152,7 @@ console.log(a + b); // Adição
 console.log(a - b); // Subtração
 console.log(a * b); // Multiplicação
 console.log(a / b); // Divisão
-console.log(a ** b); // Exponenciação
+console.log(a `` b); // Exponenciação
 console.log(b % 2); // Resto da divisão
 ```
 
