@@ -11,6 +11,7 @@ import NovoCliente from './app/NovoCliente/novocliente';
 import EditarCliente from './app/EditarCliente/editarcliente';
 import SituacaoCliente from './app/SituacaoCliente/situacaocliente';
 import Produto from './app/Produto/produto';
+import Verifyemail from './app/VerifyEmail/confirmpass';
 
 function App() {
     const { logado } = useContext(AuthContext);
@@ -27,6 +28,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Site />} />
                 <Route path='/app' element={<Login />} />
+                <Route path='/app/verifyemail' element={<Verifyemail />} />
                 <Route path='/app/signin' element={<SignIn />} />
                 <Route path='/app/resetsenha' element={<ResetSenha />} />
 

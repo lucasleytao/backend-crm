@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../Components/Navbar/navbar";
 import { Link, useNavigate } from "react-router-dom";
 import "./novocliente.css";
@@ -7,6 +7,9 @@ import InputMask from "react-input-mask";
 // Importa os módulos necessários do Firebase
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../BD/firebase";
+import { createClient } from '../Api/post/create-client';
+import { AuthContext } from "../Context/auth";
+
 
 function NovoCliente() {
   let [nome, setNome] = useState("");
@@ -15,8 +18,11 @@ function NovoCliente() {
   let [email, setEmail] = useState("");
   let [mensagem, setMensagem] = useState("");
   let [sucesso, setSucesso] = useState("");
-  const navigate = useNavigate();
 
+  const {userToken} = useContext(AuthContext)
+
+  const navigate = useNavigate();
+  console.log("token add client: ", userToken)
   const CadastrarCliente = async () => {
     if (nome.length === 0) {
       setMensagem("Informe o nome");
@@ -34,12 +40,15 @@ function NovoCliente() {
         // formata o numero de telefone antes de salvar
       const formattedPhone = `(${fone.slice(0, 2)})${fone.slice(2, 7)}-${fone.slice(7)}`;
 
-        await addDoc(collection(db, "clientes"), {
-          nome: nome,
-          end: endereco,
-          fone: formattedPhone,
-          email: email,
-        });
+        // await addDoc(collection(db, "clientes"), {
+        //   nome: nome,
+        //   end: endereco,
+        //   fone: formattedPhone,
+        //   email: email,
+        // });
+
+        createClient(nome, endereco, email,formattedPhone, userToken)
+
         setMensagem("Cliente cadastrado com sucesso!");
         setSucesso("S");
         navigate("/app/home");

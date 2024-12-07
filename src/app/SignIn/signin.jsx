@@ -4,8 +4,11 @@ import "./signin.css";
 
 import { auth } from "../BD/firebase"; // importa a autenticacao configurada
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signUp } from "../Services/AuthService";
+import { useNavigate } from "react-router-dom";
 
 function SignIn() {
+    const navigate = useNavigate();
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
@@ -15,30 +18,27 @@ function SignIn() {
 
     //validacao de dados // evita consumo desnecessario de endpoint no firebase
 
-    function cadastrarUser() {
+
+
+    async function cadastrarUser() {
         setMensagem("");
 
         if (nome.length === 0 || !sobrenome || !email || !senha) {
             setMensagem('Preencha todos os campos');
             return;
         }
+        console.log(nome, sobrenome, email, senha)
 
-        createUserWithEmailAndPassword(auth, email, senha)
-            .then((userCredential) => {
-                updateProfile(userCredential.user, {
-                    displayName: `${nome} ${sobrenome}`,
-                })
-                    .then(() => {
-                        // limpar campos apos sucesso
-                        setNome("");
-                        setSobrenome("");
-                        setEmail("");
-                        setSenha("");
-                        alert("Usuário criado com sucesso!");
-                    })
-
+        await signUp(nome, sobrenome, email, senha)
+            .then(() => {
+                // limpar campos apos sucesso
+                setNome("");
+                setSobrenome("");
+                setEmail("");
+                setSenha("");
+                alert("Usuário criado com sucesso!");
             })
-            .catch((error) => { //devolve um objeto
+           .catch((error) => { //devolve um objeto
                 if (error.message === "Firebase: Password should be at least 6 characters (auth/weak-password).") {
                     setMensagem("A senha deve possuir pelo menos 6 caracteres.");
                 } else if (error.message === 'Firebase: Error (auth/network-request-failed).') {
@@ -47,6 +47,7 @@ function SignIn() {
                     setMensagem(`${error.message}`); //seta a mensagem do objeto
                 }
             });
+        navigate('/',  { state: { email } })
     }
 
     // forma mais verbosa

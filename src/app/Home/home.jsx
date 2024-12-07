@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar/navbar";
 import ListaClientes from "../Components/ListaClientes/listaclientes";
@@ -9,14 +9,17 @@ import "./home.css";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 // importa do BD firebase
 import { db } from "../BD/firebase";
+import { AuthContext } from "../Context/auth";
+import { getClients } from "../Api/get/get-clients";
 
 function Home() {
+    const {userToken} = useContext(AuthContext)
     const [clientes, setClientes] = useState([]);
     const [busca, setBusca] = useState('');
     const [del, setDel] = useState('');
     const [confirmar, setConfirmar] = useState(false)
     const [confirmarId, setConfirmarId] = useState('')
-
+    
     async function deleteUser(id) {
         try {
             await deleteDoc(doc(db, 'clientes', id));
@@ -31,34 +34,48 @@ function Home() {
         setConfirmarId(id) // atualiza o id que sera excluido do banco
         setConfirmar(true)
     }
-
+    
     // acessa o banco de dados
-
+    
     useEffect(() => {
         const getClientes = async () => {
             try {
                 //cria uma referencia a colecao "clientes"
-                const clientesCollection = collection(db, "clientes");
+                // const clientesCollection = collection(db, "clientes");
                 //obtem os documentos da colecao
-                const clientesSnapshot = await getDocs(clientesCollection);
-
+                // const clientesSnapshot = await getDocs(clientesCollection);
+                
                 // Filtra os clientes com base na busca e monta o array de dados
-                const clientesList = clientesSnapshot.docs
-                    .filter(doc => doc.data().nome.toLowerCase().includes(busca.toLowerCase()))
+                const clientesList = clientes
+                    .filter(doc => doc.nome.toLowerCase().includes(busca.toLowerCase()))
                     .map(doc => ({
                         id: doc.id,
-                        ...doc.data() // ...doc operador spread: todos os dados
+                        ...doc // ...doc operador spread: todos os dados
                     }));
-
-                setClientes(clientesList);
-                console.log("Dados dos clientes obtidos do Firestore:", clientesList);
-            } catch (error) {
-                console.error("Erro ao buscar clientes:", error);
-            }
-        };
-        getClientes();
-    }, [busca, del]);
-
+                    
+                    setClientes(clientesList);
+                    console.log("Dados dos clientes obtidos do Firestore:", clientesList);
+                } catch (error) {
+                    console.error("Erro ao buscar clientes:", error);
+                }
+            };
+            getClientes();
+        }, [busca, del]);
+        
+        useEffect(() => {
+            console.log("Token na Home:", userToken);
+            getClients(userToken)
+                .then(response => {
+                    console.log("Resposta da API:", response);
+                    setClientes(response.Items || []);
+                })
+                .catch(error => {
+                    console.error("Erro ao buscar clientes:", error);
+                    setClientes([]);
+                });
+        }, [userToken]);
+        
+        
     return <>
         <Navbar />
         <div className="container-fluid titulo">

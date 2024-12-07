@@ -5,8 +5,7 @@ import { Link, useNavigate} from "react-router-dom";
 import { AuthContext } from "../Context/auth"; //importa contexto de autenticacao
 import "./login.css";
 
-import { auth } from "../BD/firebase"; // importa a autenticacao configurada
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signIn } from "../Services/AuthService";
 
 function Login() {
 
@@ -17,20 +16,18 @@ function Login() {
     const {setLogado} = useContext(AuthContext); // chama a funcao e usa o contexto
 
     function LoginUsuario() {
-        signInWithEmailAndPassword(auth, email, senha) //promises
-        // se
-            .then((firebaseUser) => {
+        signIn(email, senha)
+            .then((response) => {
                 // Sucesso
+                console.log(response)
                 localStorage.setItem('logado', 'S') // persiste informacoes de login | item logado setado para sim
                 setLogado(true);
                 setSucesso('S'); //esconde a mensagem de alerta
                 navigate('/app/home')
             })
-
-            //senao
-
             .catch((error) => {
                 // Erro
+                console.log(error)
                 localStorage.setItem('logado', 'N')
                 setLogado(false);
                 setSucesso("N"); //funcao igual a N
@@ -60,7 +57,6 @@ function Login() {
                     <input onChange={AltSenha} type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
                     <label htmlFor="floatingPassword">Senha</label>
                 </div>
-               
             {
                 // operador ternario
                 

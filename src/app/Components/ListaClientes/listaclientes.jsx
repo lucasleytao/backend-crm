@@ -47,16 +47,36 @@
 
 // export default ListaClientes;
 
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './listaclientes.css';
+import { removeClient } from "../../Api/delete/remove-client";
+import { AuthContext } from "../../Context/auth";
 
 function ListaClientes(props) {
   const navigate = useNavigate();
+  const { userToken } = useContext(AuthContext);
+  const [clientes, setClientes] = useState(props.arrayClientes); // estado para armazenar a lista de clientes
+
+  useEffect(() => {
+    setClientes(props.arrayClientes); // Sincroniza os clientes com os props sempre que eles mudam
+  }, [props.arrayClientes]);
+
+  const handleDelete = async (id) => {
+    try {
+      // Remove o cliente da API
+      await removeClient(id, userToken);
+
+      // Atualiza o estado local removendo o cliente excluído
+      setClientes(prevClientes => prevClientes.filter(cliente => cliente.id !== id));
+    } catch (error) {
+      console.error("Erro ao excluir cliente:", error);
+    }
+  };
 
   return (
     <>
-      {props.arrayClientes.length === 0 ? (
+      {clientes.length === 0 ? (
         <div className="alert alert-info" role="alert">
           Você não possui clientes cadastrados. Para adicionar um ou mais clientes, clique em <Link to="/app/novocliente">Adicionar Cliente</Link>.
         </div>
@@ -73,34 +93,31 @@ function ListaClientes(props) {
             </tr>
           </thead>
           <tbody>
-            {props.arrayClientes.map(cliente => {
-              return (
-                <tr key={cliente.id}>
-                  <th scope="row">{cliente.id}</th>
-                  <td>{cliente.nome}</td>
-                  <td>{cliente.end}</td>
-                  <td>{cliente.fone}</td>
-                  <td>{cliente.email}</td>
-                  <td>
-                    <button
-                      type="button"
-                      className="btn btn-outline-success btn-sm me-md-2"
-                      onClick={() => navigate(`/app/editarcliente/${cliente.id}`)}
+            {clientes.map(cliente => (
+              <tr key={cliente.id}>
+                <th scope="row">{cliente.id}</th>
+                <td>{cliente.nome}</td>
+                <td>{cliente.endereco}</td>
+                <td>{cliente.fone}</td>
+                <td>{cliente.email}</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-outline-success btn-sm me-md-2"
+                    onClick={() => navigate(`/app/editarcliente/${cliente.id}`, { state: { cliente } })}
                     >
-                      <i className="fa-solid fa-pen-to-square icone-acao"></i> Editar
-                    </button>
-
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger btn-sm"
-                      onClick={() => props.clickDelete(cliente.id)}
-                    >
-                      <i className="fa-solid fa-trash-can icone-acao"></i> Excluir
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
+                    <i className="fa-solid fa-pen-to-square icone-acao"></i> Editar
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-danger btn-sm"
+                    onClick={() => handleDelete(cliente.id)}
+                  >
+                    <i className="fa-solid fa-trash-can icone-acao"></i> Excluir
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}

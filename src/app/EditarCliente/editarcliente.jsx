@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../Components/Navbar/navbar";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import "./editarcliente.css";
 import InputMask from "react-input-mask";
-
-// importa os modulos necessarios do Firebase
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../BD/firebase";
-
-// todos que utilizarem o componente poderao passar algumas propriedades por meio do parametro
-// combine estados relacionados ao cliente em um unico objeto
+import { updateClient } from "../Api/update/update-client";
+import { AuthContext } from "../Context/auth";
 
 function EditarCliente(props) {
-    const [cliente, setCliente] = useState({nome: "", end: "", fone: "", email: ""});
+    const [cliente, setCliente] = useState({ nome: "", end: "", fone: "", email: "" });
     const [mensagem, setMensagem] = useState("");
     const [sucesso, setSucesso] = useState("");
     const navigate = useNavigate();
     const { id } = useParams();
+    const location = useLocation();
+    const [clienteData, setClienteData] = useState(null);
+    const {userToken} = useContext(AuthContext)
 
-// useEffect: quando a pagina e aberta dispara a funcao
-// primeiro paramentro: funcao que sera executada e segundo paramentro: quando que a funcao sera disparada
+    useEffect(() => {
+        if (location.state && location.state.cliente) {
+            console.log(location.state.cliente);
+            setClienteData(location.state.cliente);
+        }
+    }, [location]);
 
     useEffect(() => {
         const fetchClienteData = async () => {
             try {
-
                 const docSnap = await getDoc(doc(db, 'clientes', id));
 
                 if (docSnap.exists()) {
                     setCliente(docSnap.data());
-    
                 } else {
                     setMensagem('Nenhum documento encontrado!');
                 }
@@ -43,23 +45,32 @@ function EditarCliente(props) {
     }, [id]);
 
     const editarCliente = async () => {
-        const {nome, end, fone, email} = cliente;
-        if (!nome || !fone || !end) {
-            setMensagem(`Informe o ${!nome ? 'nome' : !fone ? 'telefone' : 'endereço'}`);
-            return;
-        }
-        
+        if (clienteData) {
+            const { nome, end, fone, email } = clienteData;
+            if (!nome || !fone || !end) {
+                setMensagem(`Informe o ${!nome ? 'nome' : !fone ? 'telefone' : 'endereço'}`);
+                return;
+            }
+
             try {
-                await updateDoc(doc(db, 'clientes', id), {
-                    ...cliente,
-                    fone: fone.replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3'), // formatacao do fone
-                });
+                // await updateDoc(doc(db, 'clientes', id), {
+                //     ...clienteData,
+                //     fone: fone.replace(/(\d{2})(\d{5})(\d{4})/, '($1)$2-$3'), // formatação do fone
+                // });
+                updateClient(clienteData, userToken)
                 setSucesso("S");
             } catch (error) {
                 console.error('Erro ao editar cliente:', error);
                 setMensagem('Erro ao editar cliente.');
+            }
         }
     };
+
+    console.log(clienteData, "é isso");
+
+    if (!clienteData) {
+        return <div>Carregando...</div>; // Exibe uma mensagem de carregamento enquanto os dados não estão disponíveis.
+    }
 
     return (
         <>
@@ -75,18 +86,18 @@ function EditarCliente(props) {
                         <div className="mb-3">
                             <label className="form-label">Nome</label>
                             <input
-                                onChange={(e) => setCliente({...cliente, nome:e.target.value})}
+                                onChange={(e) => setClienteData({ ...clienteData, nome: e.target.value })}
                                 type="text"
-                                value={cliente.nome}
+                                value={clienteData.nome}
                                 className="form-control"
                             />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Endereço</label>
                             <input
-                                onChange={(e) => setCliente({...cliente, end:e.target.value})}
+                                onChange={(e) => setClienteData({ ...clienteData, end: e.target.value })}
                                 type="text"
-                                value={cliente.end}
+                                value={clienteData.endereco}
                                 className="form-control"
                             />
                         </div>
@@ -94,20 +105,18 @@ function EditarCliente(props) {
                             <label className="form-label">Telefone</label>
                             <InputMask
                                 mask="(99)99999-9999"
-                                value={cliente.fone}
-                                onChange={(e) => setCliente({...cliente, fone:e.target.value.replace(/\D/g, "")})}
+                                value={clienteData.fone}
+                                onChange={(e) => setClienteData({ ...clienteData, fone: e.target.value.replace(/\D/g, "") })}
                                 type="tel"
                                 className="form-control"
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="exampleInputEmail1" className="form-label">
-                                Email
-                            </label>
+                            <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
                             <input
-                                onChange={(e) => setCliente({...cliente, email:e.target.value})}
+                                onChange={(e) => setClienteData({ ...clienteData, email: e.target.value })}
                                 type="email"
-                                value={cliente.email}
+                                value={clienteData.email}
                                 className="form-control"
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
