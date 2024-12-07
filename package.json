@@ -30,12 +30,12 @@
     "uuid": "^11.0.3",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "HOST=3.94.80.26 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "eslintConfig": {
     "extends": [
       "react-app",
